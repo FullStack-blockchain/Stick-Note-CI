@@ -83,3 +83,11 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+/*-----------------20180822------------------*/
+//user constants
+
+define('APP_NAME','STICK NOTE');
+// Used for phpass_helper
+define('PHPASS_HASH_STRENGTH', 8);
+define('PHPASS_HASH_PORTABLE', FALSE);

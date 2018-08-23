@@ -305,6 +305,8 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
+	define('EXT', '.php');
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
