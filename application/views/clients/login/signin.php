@@ -2,27 +2,27 @@
     <div class="container">
         <div class="login-content">
             <div class="login-logo">
-                <a href="index.html">
+                <a href="">
                     <!-- <img class="align-content" src="<?php echo base_url('assets/imgs/logo.png'); ?>" alt=""> -->
-                    <h1>Stick Note</h1>
+                    <h1><?php echo APP_NAME; ?></h1>
                 </a>
             </div>
-            <div class="alert alert-danger" role="alert">
-                This is a danger alert—check it out!
+            <div class="alert alert-danger animated bounceIn <?php echo isset($errors) ? '' : 'display-hide'; ?>" role="alert">
+                <?php echo isset($errors) ? $errors['login'][0] : ''; ?>
             </div>
             <div class="login-form">
                 <?php echo form_open('login/signin', 'class="" id="myform"'); ?>
                     <div class="form-group">
                         <label>Email address</label>
-                        <input type="email" class="form-control" name="txt_email" id="txt_email"" placeholder="Email">
+                        <input type="email" class="form-control" name="txt_email" id="txt_email"" placeholder="Email" value="<?php echo isset($values) ? $values['email'] : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" name="txt_pwd" id="txt_pwd" placeholder="Password">
+                        <input type="password" class="form-control" name="txt_pwd" id="txt_pwd" placeholder="Password" value="<?php echo isset($values) ? $values['password'] : ''; ?>">
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="chk_remember" id="chk_remember"> Remember Me
+                            <input type="checkbox" name="chk_remember" id="chk_remember" <?php echo (isset($values) && $values['remember_me'] == 'on') ? 'checked' : ''; ?> > Remember Me
                         </label>
                         <label class="pull-right">
                             <a href="#">Forgotten Password?</a>
@@ -38,7 +38,12 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
     
+<script type="text/javascript">
+    var $ = jQuery;
+    $(document).ready(function($) {
+        setTimeout(function() {
+            $('.alert').hide();
+        }, 3000);
+    });
 </script>

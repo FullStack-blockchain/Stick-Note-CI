@@ -16,4 +16,13 @@ function is_client_logged_in()
     return false;
 }
 
+/**
+ * Translate a string
+ *
+ * @return string
+ */
+function t()
+{
+    return func_get_args();
+}
 ?>

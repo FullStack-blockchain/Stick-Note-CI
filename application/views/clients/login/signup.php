@@ -2,23 +2,31 @@
     <div class="container">
         <div class="login-content">
             <div class="login-logo">
-                <a href="index.html">
-                    <img class="align-content" src="images/logo.png" alt="">
+                <a href="">
+                    <!-- <img class="align-content" src="images/logo.png" alt=""> -->
+                    <h1><?php echo APP_NAME; ?></h1>
                 </a>
             </div>
+            <div class="alert alert-danger animated bounceIn <?php echo isset($errors) ? '' : 'display-hide'; ?>" role="alert">
+                <?php echo isset($errors) ? $errors['login'][0] : ''; ?>
+            </div>
             <div class="login-form">
-                <form>
-                    <div class="form-group">
-                        <label>User Name</label>
-                        <input type="email" class="form-control" placeholder="User Name">
-                    </div>
+                <?php echo form_open('login/signup', 'class="" id="myform"'); ?>
                     <div class="form-group">
                         <label>Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" name="txt_email" id="txt_email"" placeholder="Email" value="<?php echo isset($values) ? $values['email'] : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" class="form-control" placeholder="User Name" name="txt_username" id="txt_username" value="<?php echo isset($values) ? $values['username'] : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" name="txt_pwd" id="txt_pwd" placeholder="Password" >
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" name="txt_pwd_confirm" id="txt_pwd_confirm" placeholder="Password" >
                     </div>
                     <div class="checkbox">
                         <label>
@@ -29,8 +37,17 @@
                     <div class="register-link m-t-15 text-center">
                         <p>Already have account ? <a href="<?php echo site_url('login/signin'); ?>"> Sign in</a></p>
                     </div>
-                </form>
+                <?php echo form_close(); ?>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var $ = jQuery;
+    $(document).ready(function($) {
+        setTimeout(function() {
+            //$('.alert').hide();
+        }, 3000);
+    });
+</script>

@@ -87,7 +87,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 /*-----------------20180822------------------*/
 //user constants
 
-define('APP_NAME','STICK NOTE');
+define('APP_NAME','Stick Note');
 // Used for phpass_helper
 define('PHPASS_HASH_STRENGTH', 8);
 define('PHPASS_HASH_PORTABLE', FALSE);
