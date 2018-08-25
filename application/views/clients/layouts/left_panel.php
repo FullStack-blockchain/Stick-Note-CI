@@ -12,21 +12,17 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="<?php echo site_url('clients/boards/index/notes'); ?>"> <i class="menu-icon fa fa-dashboard"></i>Notes </a>
-                    </li>
-                    <li class="active">
-                        <a href="<?php echo site_url('clients/boards/index/tasks'); ?>"> <i class="menu-icon fa fa-spinner"></i>Tasks </a>
-                    </li>
-                    <li class="active">
-                        <a href="<?php echo site_url('clients/boards/index/links'); ?>"> <i class="menu-icon fa fa-id-badge"></i>Links </a>
-                    </li>
-                    <li class="active">
-                        <a href="<?php echo site_url('clients/boards/index/diary'); ?>"> <i class="menu-icon fa fa-book"></i>Diary </a>
-                    </li>
-                    <li class="active">
-                        <a href="<?php echo site_url('clients/boards/index/bcard'); ?>"> <i class="menu-icon fa fa-id-card-o"></i>Business Card </a>
-                    </li>
+                    <?php
+                        foreach ($lstmenus as $menu) {
+                            $url = site_url('clients/boards/index/'.$menu['id']);
+                            $cur_menu = ($menu['id'] === $menuitem['id']) ? true : false;
+                    ?>
+                            <li class="active">
+                                <a href="<?php echo $url; ?>" <?php echo ($cur_menu) ? 'style="color: #dc3545 !important"' : ''; ?> > <i class="<?php echo $menu['menu_icon']; ?>" <?php echo ($cur_menu) ? 'style="color: #dc3545 !important"' : ''; ?> ></i><?php echo $menu['title']; ?> </a>
+                            </li>
+                    <?php
+                        }
+                    ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

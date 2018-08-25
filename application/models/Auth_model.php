@@ -86,6 +86,7 @@ class Auth_model extends CI_Model
         $values['password'] = $hasher->HashPassword($values['password']);
         
         $this->db->insert($table, $values);
+        
         $this->db->where('email', $values['email']);
         $user = $this->db->get($table)->row();
 

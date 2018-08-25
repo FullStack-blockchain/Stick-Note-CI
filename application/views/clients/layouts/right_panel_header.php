@@ -50,7 +50,7 @@
                           <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 4 Mails</p>
                             <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="<?php echo site_url('assets/imgs/avatar/1.jpg'); ?>"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Jonathan Smith</span>
                                     <span class="time float-right">Just now</span>
@@ -58,7 +58,7 @@
                                 </span>
                             </a>
                             <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="<?php echo site_url('assets/imgs/avatar/2.jpg'); ?>"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Jack Sanders</span>
                                     <span class="time float-right">5 minutes ago</span>
@@ -66,7 +66,7 @@
                                 </span>
                             </a>
                             <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="<?php echo site_url('assets/imgs/avatar/3.jpg'); ?>"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Cheryl Wheeler</span>
                                     <span class="time float-right">10 minutes ago</span>
@@ -74,7 +74,7 @@
                                 </span>
                             </a>
                             <a class="dropdown-item media bg-flat-color-3" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="<?php echo site_url('assets/imgs/avatar/4.jpg'); ?>"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Rachel Santos</span>
                                     <span class="time float-right">15 minutes ago</span>
@@ -89,7 +89,7 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="<?php echo site_url('assets/imgs/admin.jpg'); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -113,7 +113,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1><?php echo $menuitem; ?></h1>
+                        <h1><?php echo $menuitem['name']; ?></h1>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li class="active"><?php echo $menuitem; ?></li>
+                            <li class="active"><?php echo $menuitem['name']; ?></li>
                         </ol>
                     </div>
                 </div>
