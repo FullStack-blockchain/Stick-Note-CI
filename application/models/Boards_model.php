@@ -2,29 +2,12 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Boards_model extends CI_Model
+class Boards_model extends CRM_Model
 {
 	protected $table_name = "tasks";
     public function __construct()
     {
-        parent::__construct();
-    }
-
-    /**
-     * Get notes data
-     *
-     * @access public
-     * @param    $where           get data conditions
-     * @return 
-     */
-    public function get_data($where = null, $order_by = null)
-    {
-    	if($where != null)
-    		$this->db->where($where);
-    	if($order_by != null)
-    		$this->db->order_by($order_by);
-    	$result = $this->db->get($this->table_name)->result_array();
-    	return $result;
+        parent::__construct($this->table_name);
     }
 
     /**
@@ -52,36 +35,15 @@ class Boards_model extends CI_Model
     	$sql .= ", position = (select ifnull(max(T.position), 0)+1 from tasks as T)";
 
     	$this->db->query($sql);
-    }
-    /**
-     * Update notes
-     *
-     * @access public
-     * @param  array   $values           Form values
-     *		   int     $id 				 Notes id		   
-     * @return 
-     */
-    public function update($id, array $values)
-    {
-    	$this->db->where('id', $id);
-    	$this->db->update($this->table_name ,$values);
+        $insert_id = $this->db->insert_id();
+        $user_id = $this->session->userdata('client_user_id');
+        $task_user['task_id'] = $insert_id;
+        $task_user['user_id'] = $user_id;
+        $task_user['role'] = 'owner';
+
+        $this->db->insert('task_has_users', $task_user);
+
+        return $insert_id;
     }
 }
-/* insert sql query 
-		$sql = "INSERT INTO ".$this->table_name . " ( ";
-		$i = 0; $key_values = '';
-    	foreach ($values as $key => $value) {
-    		if($i == 0){
-    			$sql .= $key;
-    			$key_values .= "'" . $value . "'";
-    		}
-    		else
-    		{
-    			$sql .= ", " . $key;
-    			$key_values .= ", '" . $value . "'";
-    		}
-    		$i++;
-    	}
-    	$sql .= " ) VALUES ( " . $key_values . " ) ";
-*/
 ?>

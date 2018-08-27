@@ -91,3 +91,6 @@ define('APP_NAME','Stick Note');
 // Used for phpass_helper
 define('PHPASS_HASH_STRENGTH', 8);
 define('PHPASS_HASH_PORTABLE', FALSE);
+// Trash Board
+define('TRASH_BOARD_ID', 6);
+define('ATTACH_FILE_UPLOAD_PATH', 'uploads');

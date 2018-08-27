@@ -2,11 +2,12 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth_model extends CI_Model
+class Auth_model extends CRM_Model
 {
+    protected $table_name = "users";
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct($this->table_name);
     }
 
     /**
@@ -32,17 +33,15 @@ class Auth_model extends CI_Model
         $result = true;
         $errors = array();
 
-        $table = 'users';
-        $this->db->where('email', $values['email']);
-        $user = $this->db->get($table)->row();
+        $user = $this->get_row(array('email'=>$values['email']));
         if ($user) {
             // Email is okey lets check the password now
             $this->load->helper('phpass');
             $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
             if ($hasher->CheckPassword($values['password'], $user->password)) {
                 $user_data = [
-                    'client_user_id'      => $uesr['id'],
-                    'client_user_name'    => $uesr['username'],
+                    'client_user_id'      => $user->id,
+                    'client_user_name'    => $user->username,
                     'client_logged_in'    => true,
                 ];
                 $this->session->set_userdata($user_data);
@@ -69,11 +68,7 @@ class Auth_model extends CI_Model
         $result = true;
         $errors = array();
 
-        $table = 'users';
-
-        $this->db->where('email', $values['email']);
-        $user = $this->db->get($table)->row();
-
+        $user = $this->get_row(array('email'=>$values['email']));
         if ($user) {
             // Email duplicated
             $result = false;
@@ -85,14 +80,11 @@ class Auth_model extends CI_Model
         $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
         $values['password'] = $hasher->HashPassword($values['password']);
         
-        $this->db->insert($table, $values);
-        
-        $this->db->where('email', $values['email']);
-        $user = $this->db->get($table)->row();
+        $insert_id = $this->insert($values);
 
         $user_data = [
-            'client_user_id'      => $uesr['id'],
-            'client_user_name'    => $uesr['username'],
+            'client_user_id'      => $insert_id,
+            'client_user_name'    => $values['username'],
             'client_logged_in'    => true,
         ];
         $this->session->set_userdata($user_data);

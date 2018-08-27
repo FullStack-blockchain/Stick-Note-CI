@@ -32,5 +32,6 @@
 
 
     <script src="<?php echo base_url('assets/js/vendor/jquery-2.1.4.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/vendor/jquery.form.min.js'); ?>"></script> 
 </head>
 <body>
