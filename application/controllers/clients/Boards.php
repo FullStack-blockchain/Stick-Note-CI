@@ -13,6 +13,54 @@ class Boards extends Client_Controller {
         $this->load->model('task_has_files_model');
     }
 
+    public function sendMail()
+	{
+	    //Load email library
+		$this->load->library('email');
+
+		//SMTP & mail configuration
+		$config = array(
+		    'protocol'  => 'smtp',
+		    'smtp_host' => 'ssl://smtp.googlemail.com',
+		    'smtp_port' => 465,
+		    'smtp_crypto' => 'tls',
+		    'smtp_user' => 'rose19940503@gmail.com',
+		    'smtp_pass' => 'rosewerner1994',
+		    'mailtype'  => 'html',
+		    'charset'   => 'utf-8'
+		);
+		$this->email->initialize($config);
+		$this->email->set_mailtype("html");
+		$this->email->set_newline("\r\n");
+
+		//Email content
+		$htmlContent = '<h1>Sending email via SMTP server</h1>';
+		$htmlContent .= '<p>This email has sent via SMTP server from CodeIgniter application.</p>';
+
+		$this->email->to('aaron19940503@gmail.com');
+		$this->email->from('ymir0126@gmail.com','MyWebsite');
+		$this->email->subject('How to send email via SMTP server in CodeIgniter');
+		$this->email->message($htmlContent);
+
+		//Send email
+		if($this->email->send())
+	    {
+	      echo 'Email sent.';
+	    }
+	    else
+	    {
+	     	show_error($this->email->print_debugger());
+	 	}
+		/////////////////////////////$this->load->library('encrypt');///////////to avoid spamming of mail////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		////CHANGE SETTINGS IN GOGLE ACCOUNTS/////
+		////MY ACCOUNT>SIGNING IN TO GOOGLE(under sign in & security)/////
+		////SWITCH OFF 2 STEP VERIFICATION/////
+		////IN CONNECTED APPS N SITES>SWITCH ONN---"ALLOW LESS SECURE APPS"----/////
+
+	}
+
     /**
      * Display notes
      *
@@ -22,6 +70,9 @@ class Boards extends Client_Controller {
      */
 	public function index($types = "1")
 	{
+		$this->sendMail();
+		exit;
+		echo phpinfo(); exit;
 		$lst_menus = $this->columns_model->get_data();
 		$menuitem = array();
 		foreach ($lst_menus as $type) {

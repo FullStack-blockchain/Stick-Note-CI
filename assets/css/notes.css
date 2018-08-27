@@ -308,9 +308,9 @@ button.toolbar-btn {
   align-items: center;
 }
 .file-upload-icon i.fa-cloud-upload {
-  margin: 0px;
+  margin: 5px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 26px;
 }
 .file-upload-icon i:hover {
   opacity: 0.6;

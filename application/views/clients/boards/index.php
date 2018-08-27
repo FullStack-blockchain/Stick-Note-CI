@@ -56,11 +56,11 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-9">
+                  <div class="col-sm-6">
                     <?php if($menuitem['id'] != TRASH_BOARD_ID) { ?>
                       <div class="note-toolbar">
                         <div class="row" >
-                          <div class="col">
+                          <div class="col-sm-1">
                             <div class="for-color">
                               <div class="dropdown">
                                 <button type="button" class="toolbar-btn"  data-toggle="dropdown" aria-label="Color">
@@ -121,7 +121,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col">
+                          <div class="col-sm-1">
                             <div class="for-board">
                               <div class="dropdown">
                                 <button type="button" class="toolbar-btn"  data-toggle="dropdown" aria-label="Color">
@@ -145,12 +145,12 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col">
+                          <div class="col-sm-1">
                             <button type="button" class="toolbar-btn" data-toggle="modal" data-target="#friendModal">
                                 <span class="ti-user"></span>
                             </button>
                           </div>
-                          <div class="col">
+                          <div class="col-sm-1">
                             <div class="file-upload-icon">
                               <i id="i_txt_file_attach_upload" class="fa fa-cloud-upload"></i>
                               <input type="file" name="txt_file_attach_upload" id="txt_file_attach_upload">
@@ -160,11 +160,11 @@
                       </div>
                     <?php } ?>
                   </div>
-                  <div class="col-sm-3">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <div class="col-sm-6">
                     <?php if($menuitem['id'] != TRASH_BOARD_ID) { ?>
-                      <button type="submit" id="notes_submit" class="btn btn-primary" tabindex="3" onclick="">Apply</button>
+                      <button type="submit" id="notes_submit" class="btn btn-primary" tabindex="3" onclick="" style="float: right;">Apply</button>
                     <?php } ?>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float: right;">Cancel</button>
                   </div>
                 </div>
               </div>
