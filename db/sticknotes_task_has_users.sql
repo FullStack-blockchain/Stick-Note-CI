@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sticknotes` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sticknotes`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: sticknotes
@@ -16,24 +18,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `task_has_users`
+-- Dumping data for table `task_has_users`
 --
 
-DROP TABLE IF EXISTS `task_has_users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `task_has_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `task_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `role` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_task_user` (`task_id`,`user_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `task_has_users_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `task_has_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `task_has_users` WRITE;
+/*!40000 ALTER TABLE `task_has_users` DISABLE KEYS */;
+INSERT INTO `task_has_users` VALUES (32,78,8,'owner','0'),(33,79,8,'owner','0'),(34,80,9,'owner','0'),(35,80,8,'friend','1'),(36,81,8,'owner','0'),(38,81,9,'friend','1');
+/*!40000 ALTER TABLE `task_has_users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -44,4 +36,4 @@ CREATE TABLE `task_has_users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-27  4:19:05
+-- Dump completed on 2018-08-28  9:40:34

@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sticknotes` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sticknotes`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: sticknotes
@@ -16,21 +18,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_has_notifications`
+-- Dumping data for table `user_has_notifications`
 --
 
-DROP TABLE IF EXISTS `user_has_notifications`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_has_notifications` (
-  `user_id` int(11) NOT NULL,
-  `project_id` int(11) NOT NULL,
-  UNIQUE KEY `user_has_notifications_unique_idx` (`user_id`,`project_id`),
-  KEY `user_has_notifications_ibfk_2` (`project_id`),
-  CONSTRAINT `user_has_notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `user_has_notifications_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `user_has_notifications` WRITE;
+/*!40000 ALTER TABLE `user_has_notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_has_notifications` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -41,4 +35,4 @@ CREATE TABLE `user_has_notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-27  4:19:05
+-- Dump completed on 2018-08-28  9:40:34

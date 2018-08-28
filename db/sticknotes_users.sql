@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sticknotes` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sticknotes`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: sticknotes
@@ -16,34 +18,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Dumping data for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notifications_enabled` tinyint(1) DEFAULT '0',
-  `timezone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `language` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `disable_login_form` tinyint(1) DEFAULT '0',
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `notifications_filter` int(11) DEFAULT '4',
-  `lock_expiration_date` bigint(20) DEFAULT NULL,
-  `role` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'app-user',
-  `is_active` tinyint(1) DEFAULT '1',
-  `avatar_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `api_access_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filter` mediumtext COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (8,'aaron','$2a$08$rtv8gmdOOrXVb8F2l9OAOOoqmmx9Rkd.inqK/mg5tW8KLZ6tO8ygW',NULL,'aaron19940503@gmail.com',0,NULL,NULL,0,'',4,NULL,'app-user',1,NULL,NULL,NULL),(9,'rose','$2a$08$b840v8av01pe54wyJHWQ.eHRN30PqaQdYBSffAubzNsaRyjvPSGxC',NULL,'rose19940503@gmail.com',0,NULL,NULL,0,'',4,NULL,'app-user',1,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -54,4 +36,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-27  4:19:05
+-- Dump completed on 2018-08-28  9:40:34

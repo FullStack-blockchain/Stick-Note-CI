@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sticknotes` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sticknotes`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: sticknotes
@@ -16,26 +18,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `task_has_files`
+-- Dumping data for table `task_has_files`
 --
 
-DROP TABLE IF EXISTS `task_has_files`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `task_has_files` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_image` tinyint(1) DEFAULT '0',
-  `task_id` int(11) NOT NULL,
-  `date` bigint(20) DEFAULT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `size` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `files_task_idx` (`task_id`),
-  CONSTRAINT `task_has_files_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `task_has_files` WRITE;
+/*!40000 ALTER TABLE `task_has_files` DISABLE KEYS */;
+INSERT INTO `task_has_files` VALUES (2,'panda.jpg','e418cb6556b296a05f8b468a5b9ceb0d.jpg',0,78,1535470509,8,135254),(3,'README.md','bdbf5f8a1161051a9cbec9022c33b006.md',0,78,1535470593,8,4227),(7,'sticknotes_columns.sql','5f774ca7b3c6eeb4b56a5980c1ca068c.sql',0,79,1535471245,8,2525),(8,'README.md','177651d3a47a0aabe3e9b063fc0beed1.md',0,80,1535471416,9,4227);
+/*!40000 ALTER TABLE `task_has_files` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -46,4 +36,4 @@ CREATE TABLE `task_has_files` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-27  4:19:05
+-- Dump completed on 2018-08-28  9:40:34

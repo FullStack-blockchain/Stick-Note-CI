@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sticknotes` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sticknotes`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: sticknotes
@@ -32,6 +34,16 @@ CREATE TABLE `columns` (
   UNIQUE KEY `idx_title_project` (`title`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `columns`
+--
+
+LOCK TABLES `columns` WRITE;
+/*!40000 ALTER TABLE `columns` DISABLE KEYS */;
+INSERT INTO `columns` VALUES (1,'Notes',1,'','menu-icon fa fa-dashboard'),(2,'Tasks',2,'','menu-icon fa fa-spinner'),(3,'Links',3,'','menu-icon fa fa-id-badge'),(4,'Diary',4,'','menu-icon fa fa-book'),(5,'Business Card',5,'','menu-icon fa fa-id-card-o'),(6,'Trash',6,'','menu-icon fa fa-trash-o');
+/*!40000 ALTER TABLE `columns` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -42,4 +54,4 @@ CREATE TABLE `columns` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-27  4:19:05
+-- Dump completed on 2018-08-28  9:40:45

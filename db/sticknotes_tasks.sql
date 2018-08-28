@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sticknotes` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sticknotes`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: sticknotes
@@ -16,45 +18,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tasks`
+-- Dumping data for table `tasks`
 --
 
-DROP TABLE IF EXISTS `tasks`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` mediumtext COLLATE utf8mb4_unicode_ci,
-  `description` mediumtext COLLATE utf8mb4_unicode_ci,
-  `date_creation` bigint(20) DEFAULT NULL,
-  `date_completed` bigint(20) DEFAULT NULL,
-  `date_due` bigint(20) DEFAULT NULL,
-  `color_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '#fafafa',
-  `column_id` int(11) NOT NULL DEFAULT '1',
-  `position` int(11) DEFAULT '0',
-  `is_active` tinyint(4) DEFAULT '1',
-  `creator_id` int(11) DEFAULT '0',
-  `date_modification` int(11) DEFAULT '0',
-  `date_started` bigint(20) DEFAULT NULL,
-  `time_spent` float DEFAULT '0',
-  `time_estimated` float DEFAULT '0',
-  `date_moved` bigint(20) DEFAULT NULL,
-  `recurrence_status` int(11) NOT NULL DEFAULT '0',
-  `recurrence_trigger` int(11) NOT NULL DEFAULT '0',
-  `recurrence_factor` int(11) NOT NULL DEFAULT '0',
-  `recurrence_timeframe` int(11) NOT NULL DEFAULT '0',
-  `recurrence_basedate` int(11) NOT NULL DEFAULT '0',
-  `recurrence_parent` int(11) DEFAULT NULL,
-  `recurrence_child` int(11) DEFAULT NULL,
-  `priority` int(11) DEFAULT '0',
-  `external_provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `external_uri` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_task_active` (`is_active`),
-  KEY `column_id` (`column_id`),
-  CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`column_id`) REFERENCES `columns` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `tasks` WRITE;
+/*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
+INSERT INTO `tasks` VALUES (78,'New Test','ssmtp aaron19940503@gmail.com\r\nTo:aaron19940503@gmail.com\r\nFrom:caban19901227@gmail.com\r\nSubject: mail subject\r\nMail content\r\nmail content1\r\n',1535470461,NULL,NULL,'#ffd180',1,1,1,0,0,NULL,0,0,NULL,0,0,0,0,0,NULL,NULL,0,NULL,NULL),(79,'2018-08-28','#\r\n# Config file for sSMTP sendmail\r\n#\r\n# The person who gets all mail for userids < 1000\r\n# Make this empty to disable rewriting.\r\nroot=postmaster\r\n\r\n# The place where the mail goes. The actual machine name is required no \r\n# MX records are consulted. Commonly mailhosts are named mail.domain.com',1535471244,NULL,NULL,'#ccff90',1,2,1,0,0,NULL,0,0,NULL,0,0,0,0,0,NULL,NULL,0,NULL,NULL),(80,'Test send mail color attached file','# sSMTP aliases\r\n# \r\n# Format:	local_account:outgoing_address:mailhub\r\n#\r\n# Example: root:your_login@your.domain:mailhub.your.domain[:port]\r\n# where [:port] is an optional port number that defaults to 25.',1535471374,NULL,NULL,'#cfd8dc',1,3,1,0,0,NULL,0,0,NULL,0,0,0,0,0,NULL,NULL,0,NULL,NULL),(81,'new - aaa','123123\r\n123123\r\n444\r\n444444\r\n',1535473792,NULL,NULL,'#fafafa',1,4,1,0,0,NULL,0,0,NULL,0,0,0,0,0,NULL,NULL,0,NULL,NULL);
+/*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -65,4 +36,4 @@ CREATE TABLE `tasks` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-27  4:19:05
+-- Dump completed on 2018-08-28  9:40:34
