@@ -46,7 +46,7 @@ class Boards extends Client_Controller {
 		/*---------------LAYOUT END----------------*/
 
 		$sel_fields = "tasks.id, tasks.title, tasks.description, tasks.date_creation, tasks.color_id, tasks.column_id, tasks.position, task_has_users.task_id, task_has_users.user_id, task_has_users.role";
-		$arrjoin = array("join_table"=>"task_has_users", "cond"=>"task_has_users.task_id = tasks.id");
+		$arrjoin = array(array("join_table"=>"task_has_users", "cond"=>"task_has_users.task_id = tasks.id"));
 		$user_id = $this->session->userdata('client_user_id');
 
 		$arrwhere = " tasks.column_id = ".$menuitem['id']." AND task_has_users.user_id = ".$user_id;
@@ -149,11 +149,15 @@ class Boards extends Client_Controller {
 				$this->task_has_users_model->insert($values);
 				$is_useradded = true;
 
-				// send_mail($this, "aaron19940503@gmail.com", "rose19940503@gmail.com", "Subject", "Content");
+				$arrjoin = array(array("join_table"=>"task_has_users", "cond"=>"task_has_users.user_id = users.id"), array("join_table"=>"tasks", "cond"=>"tasks.id = task_has_users.task_id"));
+				$sel_fields = "users.email, users.name, tasks.title, tasks.description ";
+				$owner = $this->users_model->get_row(array("task_has_users.task_id"=>$notes_id, "task_has_users.role"=>"owner"), null, $arrjoin, $sel_fields);
+				
+				send_mail($this, $owner->email, $new_email, $owner->title, $owner->description);
 			}
 		}
 
-		$arrjoin = array("join_table"=>"users", "cond"=>"users.id = task_has_users.user_id");
+		$arrjoin = array(array("join_table"=>"users", "cond"=>"users.id = task_has_users.user_id"));
 		$data = $this->task_has_users_model->get_data(array("task_id"=>$notes_id), null, $arrjoin, "task_has_users.id, task_has_users.task_id, task_has_users.user_id, task_has_users.role, users.username, users.email");
 
 		echo json_encode(array("lst_colla"=>$data, "is_added"=>$is_useradded));
@@ -169,7 +173,7 @@ class Boards extends Client_Controller {
 		$board_id = $this->input->post('csv_board_id');
 
 		$sel_fields = "tasks.title, tasks.description, tasks.date_creation, tasks.color_id";
-		$arrjoin = array("join_table"=>"task_has_users", "cond"=>"task_has_users.task_id = tasks.id");
+		$arrjoin = array(array("join_table"=>"task_has_users", "cond"=>"task_has_users.task_id = tasks.id"));
 		$user_id = $this->session->userdata('client_user_id');
 		$arrwhere = array("tasks.column_id"=>$board_id, "task_has_users.user_id"=>$user_id);
 		$results = $this->boards_model->get_data($arrwhere, "tasks.position desc", $arrjoin, $sel_fields);

@@ -30,11 +30,11 @@ function send_mail($obj, $from, $to, $subject, $content)
 	//Send email
 	if($obj->email->send())
     {
-		echo 'success';
+		return 'success';
     }
     else
     {
-     	show_error($obj->email->print_debugger());
+     	return $obj->email->print_debugger();
  	}
 }
 

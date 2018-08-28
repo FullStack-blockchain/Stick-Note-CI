@@ -18,7 +18,7 @@ class CRM_Model extends CI_Model
      * @param    $where           get data conditions
      * @return 
         $sel_fields = "tasks.id, tasks.title, tasks.description, task_has_users.user_id, task_has_users.role";
-        $arrjoin = array("join_table"=>"task_has_users", "cond"=>"task_has_users.task_id = tasks.id");
+        $arrjoin = array(array("join_table"=>"task_has_users", "cond"=>"task_has_users.task_id = tasks.id"));
         $user_id = $this->session->userdata('client_user_id');
         $arrwhere = array("tasks.column_id"=>$menuitem['id'], "task_has_users.user_id"=>$user_id);
         $result = $this->boards_model->get_data($arrwhere, "tasks.position desc", $arrjoin, $sel_fields);
@@ -29,8 +29,11 @@ class CRM_Model extends CI_Model
             $this->db->select($selectfileds);
     	if($where != null)
     		$this->db->where($where);
-        if($arrjoin != null)
-            $this->db->join($arrjoin['join_table'], $arrjoin['cond']);
+        if($arrjoin != null){
+            foreach ($arrjoin as $itemjoin) {
+                $this->db->join($itemjoin['join_table'], $itemjoin['cond']);
+            }
+        }
     	if($order_by != null)
     		$this->db->order_by($order_by);
     	$result = $this->db->get($this->table_name)->result_array();
@@ -48,12 +51,15 @@ class CRM_Model extends CI_Model
     {
         if($selectfileds != null)
             $this->db->select($selectfileds);
-    	if($where != null)
-    		$this->db->where($where);
-        if($arrjoin != null)
-            $this->db->join($arrjoin['join_table'], $arrjoin['cond']);
-    	if($order_by != null)
-    		$this->db->order_by($order_by);
+        if($where != null)
+            $this->db->where($where);
+        if($arrjoin != null){
+            foreach ($arrjoin as $itemjoin) {
+                $this->db->join($itemjoin['join_table'], $itemjoin['cond']);
+            }
+        }
+        if($order_by != null)
+            $this->db->order_by($order_by);
     	$row = $this->db->get($this->table_name)->row();
     	return $row;
     }
