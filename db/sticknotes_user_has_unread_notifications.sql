@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: localhost    Database: sticknote
+-- Host: localhost    Database: sticknotes
 -- ------------------------------------------------------
 -- Server version	5.7.23-0ubuntu0.16.04.1
 
@@ -16,25 +16,21 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `comments`
+-- Table structure for table `user_has_unread_notifications`
 --
 
-DROP TABLE IF EXISTS `comments`;
+DROP TABLE IF EXISTS `user_has_unread_notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comments` (
+CREATE TABLE `user_has_unread_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `task_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT '0',
-  `date_creation` bigint(20) DEFAULT NULL,
-  `comment` mediumtext COLLATE utf8mb4_unicode_ci,
-  `reference` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `date_modification` bigint(20) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_creation` bigint(20) NOT NULL,
+  `event_name` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_data` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `comments_reference_idx` (`reference`),
-  KEY `comments_task_idx` (`task_id`),
-  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE
+  CONSTRAINT `user_has_unread_notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +43,4 @@ CREATE TABLE `comments` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-21 20:01:07
+-- Dump completed on 2018-08-27  4:19:05

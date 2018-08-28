@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: localhost    Database: sticknote
+-- Host: localhost    Database: sticknotes
 -- ------------------------------------------------------
 -- Server version	5.7.23-0ubuntu0.16.04.1
 
@@ -24,25 +24,20 @@ DROP TABLE IF EXISTS `tasks`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` mediumtext COLLATE utf8mb4_unicode_ci,
   `description` mediumtext COLLATE utf8mb4_unicode_ci,
   `date_creation` bigint(20) DEFAULT NULL,
   `date_completed` bigint(20) DEFAULT NULL,
   `date_due` bigint(20) DEFAULT NULL,
-  `color_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `column_id` int(11) NOT NULL,
-  `owner_id` int(11) DEFAULT '0',
-  `position` int(11) DEFAULT NULL,
-  `score` int(11) DEFAULT NULL,
+  `color_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '#fafafa',
+  `column_id` int(11) NOT NULL DEFAULT '1',
+  `position` int(11) DEFAULT '0',
   `is_active` tinyint(4) DEFAULT '1',
-  `category_id` int(11) DEFAULT '0',
   `creator_id` int(11) DEFAULT '0',
   `date_modification` int(11) DEFAULT '0',
-  `reference` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT '',
   `date_started` bigint(20) DEFAULT NULL,
   `time_spent` float DEFAULT '0',
   `time_estimated` float DEFAULT '0',
-  `swimlane_id` int(11) NOT NULL,
   `date_moved` bigint(20) DEFAULT NULL,
   `recurrence_status` int(11) NOT NULL DEFAULT '0',
   `recurrence_trigger` int(11) NOT NULL DEFAULT '0',
@@ -57,11 +52,8 @@ CREATE TABLE `tasks` (
   PRIMARY KEY (`id`),
   KEY `idx_task_active` (`is_active`),
   KEY `column_id` (`column_id`),
-  KEY `tasks_reference_idx` (`reference`),
-  KEY `tasks_swimlane_ibfk_1` (`swimlane_id`),
-  CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`column_id`) REFERENCES `columns` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `tasks_swimlane_ibfk_1` FOREIGN KEY (`swimlane_id`) REFERENCES `swimlanes` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`column_id`) REFERENCES `columns` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -73,4 +65,4 @@ CREATE TABLE `tasks` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-21 20:01:07
+-- Dump completed on 2018-08-27  4:19:05

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: localhost    Database: sticknote
+-- Host: localhost    Database: sticknotes
 -- ------------------------------------------------------
 -- Server version	5.7.23-0ubuntu0.16.04.1
 
@@ -16,36 +16,21 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `columns`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `columns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE `columns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notifications_enabled` tinyint(1) DEFAULT '0',
-  `timezone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `language` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `disable_login_form` tinyint(1) DEFAULT '0',
-  `twofactor_activated` tinyint(1) DEFAULT '0',
-  `twofactor_secret` char(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `notifications_filter` int(11) DEFAULT '4',
-  `nb_failed_login` int(11) DEFAULT '0',
-  `lock_expiration_date` bigint(20) DEFAULT NULL,
-  `role` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'app-user',
-  `is_active` tinyint(1) DEFAULT '1',
-  `avatar_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `api_access_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filter` mediumtext COLLATE utf8mb4_unicode_ci,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) NOT NULL,
+  `description` mediumtext COLLATE utf8mb4_unicode_ci,
+  `menu_icon` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `users_username_idx` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `idx_title_project` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +42,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-21 20:01:07
+-- Dump completed on 2018-08-27  4:19:05

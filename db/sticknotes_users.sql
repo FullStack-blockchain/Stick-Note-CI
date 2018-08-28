@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: localhost    Database: sticknote
+-- Host: localhost    Database: sticknotes
 -- ------------------------------------------------------
 -- Server version	5.7.23-0ubuntu0.16.04.1
 
@@ -16,21 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_has_metadata`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `user_has_metadata`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_has_metadata` (
-  `user_id` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `changed_by` int(11) NOT NULL DEFAULT '0',
-  `changed_on` int(11) NOT NULL DEFAULT '0',
-  UNIQUE KEY `user_id` (`user_id`,`name`),
-  CONSTRAINT `user_has_metadata_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifications_enabled` tinyint(1) DEFAULT '0',
+  `timezone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `disable_login_form` tinyint(1) DEFAULT '0',
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `notifications_filter` int(11) DEFAULT '4',
+  `lock_expiration_date` bigint(20) DEFAULT NULL,
+  `role` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'app-user',
+  `is_active` tinyint(1) DEFAULT '1',
+  `avatar_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_access_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `filter` mediumtext COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -42,4 +54,4 @@ CREATE TABLE `user_has_metadata` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-21 20:01:07
+-- Dump completed on 2018-08-27  4:19:05

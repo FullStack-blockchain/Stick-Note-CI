@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: localhost    Database: sticknote
+-- Host: localhost    Database: sticknotes
 -- ------------------------------------------------------
 -- Server version	5.7.23-0ubuntu0.16.04.1
 
@@ -16,24 +16,23 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `task_has_links`
+-- Table structure for table `password_reset`
 --
 
-DROP TABLE IF EXISTS `task_has_links`;
+DROP TABLE IF EXISTS `password_reset`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `task_has_links` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `link_id` int(11) NOT NULL,
-  `task_id` int(11) NOT NULL,
-  `opposite_task_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `task_has_links_unique` (`link_id`,`task_id`,`opposite_task_id`),
-  KEY `opposite_task_id` (`opposite_task_id`),
-  KEY `task_has_links_task_index` (`task_id`),
-  CONSTRAINT `task_has_links_ibfk_1` FOREIGN KEY (`link_id`) REFERENCES `links` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `task_has_links_ibfk_2` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `task_has_links_ibfk_3` FOREIGN KEY (`opposite_task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE
+CREATE TABLE `password_reset` (
+  `token` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_expiration` int(11) NOT NULL,
+  `date_creation` int(11) NOT NULL,
+  `ip` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_agent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`token`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `password_reset_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -46,4 +45,4 @@ CREATE TABLE `task_has_links` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-21 20:01:07
+-- Dump completed on 2018-08-27  4:19:06
