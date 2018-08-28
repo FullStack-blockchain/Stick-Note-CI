@@ -6,11 +6,6 @@ class Boards extends Client_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model('boards_model');
-        $this->load->model('columns_model');
-        $this->load->model('task_has_users_model');
-        $this->load->model('users_model');
-        $this->load->model('task_has_files_model');
     }
 
     /**
@@ -149,11 +144,11 @@ class Boards extends Client_Controller {
 				$this->task_has_users_model->insert($values);
 				$is_useradded = true;
 
-				$arrjoin = array(array("join_table"=>"task_has_users", "cond"=>"task_has_users.user_id = users.id"), array("join_table"=>"tasks", "cond"=>"tasks.id = task_has_users.task_id"));
-				$sel_fields = "users.email, users.name, tasks.title, tasks.description ";
-				$owner = $this->users_model->get_row(array("task_has_users.task_id"=>$notes_id, "task_has_users.role"=>"owner"), null, $arrjoin, $sel_fields);
+				// $arrjoin = array(array("join_table"=>"task_has_users", "cond"=>"task_has_users.user_id = users.id"), array("join_table"=>"tasks", "cond"=>"tasks.id = task_has_users.task_id"));
+				// $sel_fields = "users.email, users.name, tasks.title, tasks.description ";
+				// $owner = $this->users_model->get_row(array("task_has_users.task_id"=>$notes_id, "task_has_users.role"=>"owner"), null, $arrjoin, $sel_fields);
 				
-				send_mail($this, $owner->email, $new_email, $owner->title, $owner->description);
+				// send_mail($this, $owner->email, $new_email, $owner->title, $owner->description);
 			}
 		}
 
@@ -211,9 +206,14 @@ class Boards extends Client_Controller {
         }
         else
         {
+        	$notes_id = $this->input->post('notes_id');
+			$tasks['column_id'] = $this->input->post('board_id');
+        	if($notes_id == "")
+				$notes_id = $this->boards_model->insert($tasks);
+
             $data = $this->upload->data();
             $obj['path'] = $data['file_name'];
-            $obj['task_id'] = $this->input->post('notes_id');
+            $obj['task_id'] = $notes_id;
             $obj['date'] = strtotime("now");
             $user_id = $this->session->userdata('client_user_id');
             $obj['user_id'] = $user_id;

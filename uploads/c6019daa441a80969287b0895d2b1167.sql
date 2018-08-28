@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sticknotes` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sticknotes`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: sticknotes
@@ -16,23 +18,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_has_unread_notifications`
+-- Table structure for table `columns`
 --
 
-DROP TABLE IF EXISTS `user_has_unread_notifications`;
+DROP TABLE IF EXISTS `columns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_has_unread_notifications` (
+CREATE TABLE `columns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `date_creation` bigint(20) NOT NULL,
-  `event_name` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `event_data` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) NOT NULL,
+  `description` mediumtext COLLATE utf8mb4_unicode_ci,
+  `menu_icon` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `user_has_unread_notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `idx_title_project` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `columns`
+--
+
+LOCK TABLES `columns` WRITE;
+/*!40000 ALTER TABLE `columns` DISABLE KEYS */;
+INSERT INTO `columns` VALUES (1,'Notes',1,'','menu-icon fa fa-dashboard'),(2,'Tasks',2,'','menu-icon fa fa-spinner'),(3,'Links',3,'','menu-icon fa fa-id-badge'),(4,'Diary',4,'','menu-icon fa fa-book'),(5,'Business Card',5,'','menu-icon fa fa-id-card-o'),(6,'Trash',6,'','menu-icon fa fa-trash-o');
+/*!40000 ALTER TABLE `columns` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -43,4 +54,4 @@ CREATE TABLE `user_has_unread_notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-27  4:19:05
+-- Dump completed on 2018-08-28  8:05:51

@@ -248,6 +248,7 @@
         var formdata = new FormData();
         formdata.append( 'txt_file_attach_upload', fileToUpload );
         formdata.append('notes_id', $('#notes_id').val());
+        formdata.append('board_id', $('#board_id').val());
 
         var data = formdata;
         $.ajax({
@@ -277,6 +278,7 @@
             success : 
                 function(msg) {
                     msg = JSON.parse(msg);
+                    $("#notes_id").val(msg);
                     setTimeout(function() {
                         $(".progress").css("display", "none");
                         $(".progress-bar").html("0%");
